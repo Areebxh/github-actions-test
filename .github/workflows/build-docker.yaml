@@ -10,10 +10,12 @@ jobs:
         uses: actions/checkout@v4
       - name: build image
         run: |
-          docker build ./api/ -t areebtech/github-actions:latest
+          docker build ./api/ -t areebtech/github-actions:BE
+          docker build ./front-end-nextjs/ -t areebtech/github-actions:FE
          
       - name: push image to docker hub
         run: |
           docker login -u areebtech -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push areebtech/github-actions:latest
+          docker push areebtech/github-actions:BE
+          docker push areebtech/github-actions:FE
        
